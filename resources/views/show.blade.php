@@ -5,7 +5,8 @@
             <!-- single blog -->
             <div class="col-8">
                 <img src="/images/bagan-burma-myanmar.jpg" width="100%" alt="blog picture">
-                <p>author</p>
+                <p>{{$blog->body}}</p>
+        
             </div>
             <!-- distinations -->
             <div class="col-4 p-4">
