@@ -19,7 +19,7 @@ class BlogFactory extends Factory
     {
         return [
             'title'=>$this->faker->name(),
-            'slug'=>$this->faker->slug(),
+            'slug'=>$this->faker->unique()->slug(),
             'user_id'=>User::factory(),
             'body'=>$this->faker->paragraph()
         ];

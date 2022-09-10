@@ -2,12 +2,13 @@
     
     <x-nav />
     <!-- hero section -->
-    
+
     <img src="/images/bagan-burma-myanmar.jpg" width="100%" class="mb-5" alt="">
 
     <div class="container">
         
-        <x-secondary-nav-menu :blogs="$blogs"/>
+        <x-blog-section :blogs="$blogs" />
+
 
         <!-- subscribe feature -->
         <div class="card p-3 m-2 text-center shadow-sm border-0 mb-5" style="background-color: #1A385A;">

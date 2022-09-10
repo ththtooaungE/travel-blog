@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -10,7 +11,7 @@ class BlogController extends Controller
     public function index()
     {
         return view('index',[
-            'blogs'=>Blog::all()
+            'blogs'=>Blog::filter(request(['search','category']))->latest()->with('category')->paginate(6)->withQueryString()
         ]);
     }
 
@@ -20,4 +21,5 @@ class BlogController extends Controller
             'blog'=>Blog::where('slug',$blog->slug)->first()
         ]);
     }
+
 }
