@@ -23,6 +23,12 @@ class Blog extends Model
                 $query->where('slug',$slug);
             });
         });
+
+        $query->when($filter['distination'] ?? false, function($query, $slug) {
+            $query->whereHas('distination', function($query) use($slug) {
+                $query->where('slug', $slug);
+            });
+        });
     }
 
     public function user()
@@ -33,6 +39,11 @@ class Blog extends Model
     public function category()
     {   
         return $this->belongsToMany(Category::class);
+    }
+
+    public function distination()
+    {
+        return $this->belongsTo(Distination::class);
     }
 
 }

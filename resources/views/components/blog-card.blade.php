@@ -8,10 +8,12 @@
     @endforeach
 
     <!-- image -->
-    <div style="position: relative;" class="mt-2">
-        <img src="/images/bagan-burma-myanmar.jpg" class="rounded" style="width: 100%;object-fit:cover;" alt="blog picture">
-        <div style="position: absolute; top:10px; left:10px; right:10px; font-size:18px;">
-            <mark>{{substr($blog->body,0,80)}}</mark>
+    <a href="/blogs/{{$blog->slug}}">
+        <div style="position: relative;" class="mt-2">
+            <img src="/images/bagan-burma-myanmar.jpg" class="rounded" style="width: 100%;object-fit:cover;" alt="blog picture">
+            <div style="position: absolute; top:10px; left:10px; right:10px; font-size:18px;">
+                <mark>{{substr($blog->body,0,80)}}</mark>
+            </div>
         </div>
-    </div>
+    </a>
 </a>
