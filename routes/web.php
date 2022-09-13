@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Models\Category;
@@ -16,6 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [BlogController::class, 'index']);
+Route::get('/',[BlogController::class, 'index']);
 Route::get('/blogs/{blog:slug}',[BlogController::class,'show']);
-Route::get('/categories/{category:slug}',[CategoryController::class,'show']);
+
+Route::get('/register',[AuthController::class,'create'])->middleware('guest');
+Route::post('/register',[AuthController::class,'store'])->middleware('guest');
+
+Route::get('/login',[AuthController::class,'login'])->middleware('guest');
+Route::post('/login',[AuthController::class,'login_post'])->middleware('guest');
+
+Route::post('/logout',[AuthController::class,'logout'])->middleware('auth');

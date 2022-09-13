@@ -10,7 +10,7 @@ class BlogController extends Controller
 {
     public function index()
     {
-        return view('index',[
+        return view('blogs.index',[
             'blogs'=>Blog::filter(request(['search','category','distination']))
                 ->latest()
                 ->with('category')
@@ -21,7 +21,7 @@ class BlogController extends Controller
 
     public function show(Blog $blog)
     {
-        return view('show',[
+        return view('blogs.show',[
             'blog'=>Blog::where('slug',$blog->slug)->first()
         ]);
     }
