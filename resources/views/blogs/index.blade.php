@@ -8,7 +8,11 @@
     <img src="/images/bagan-burma-myanmar.jpg" width="100%" class="mb-5" alt="">
 
     <div class="container">
-        <x-distination-dropdown />
+
+        <x-distination-dropdown-wrapper>
+            <x-distination-dropdown />
+        </x-distination-dropdown-wrapper>
+        
         <x-blog-section :blogs="$blogs" />
         <x-subscribe />
     </div>

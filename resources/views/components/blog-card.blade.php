@@ -4,7 +4,9 @@
     <!-- category -->
     @foreach($blog->category as $category)
     <a class="text-white" 
-        href="/?category={{$category->slug}}"><span class="badge bg-success p-2">{{$category->name}}</span></a>
+        href="/?category={{$category->slug}}{{request('search')
+            ? '&search='.request('search') : ''}}{{request('distination') 
+            ? '&distination='.request('distination') : ''}}"><span class="badge bg-success p-2">{{$category->name}}</span></a>
     @endforeach
 
     <!-- image -->
