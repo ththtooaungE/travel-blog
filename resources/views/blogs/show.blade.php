@@ -1,6 +1,7 @@
 <x-layout>
     <div class="container">
-        <div class="row">
+        <div class="row mb-5">
+            
             <!-- single blog -->
             <div class="col-8">
                 <img src="/images/bagan-burma-myanmar.jpg" width="100%" alt="blog picture">
@@ -13,14 +14,16 @@
                 @endforeach
                 </div>
                 <p>{{$blog->body}}</p>
-        
             </div>
+
             <!-- distinations -->
             <div class="col-4 p-4">
                 <x-distination-dropdown-wrapper>
                     <x-distination-dropdown class="flex-column" :blog="$blog" />
                 </x-distination-dropdown-wrapper>
             </div>
+
+            <x-random-blogs :randomBlogs="$randomBlogs" />
         </div>
     </div>
 </x-layout>

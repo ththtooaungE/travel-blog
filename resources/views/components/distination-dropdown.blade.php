@@ -10,7 +10,7 @@
         @endif
         <p class="h5 mx-2">Distinations</p>
         <select name="distination" class="form-select text-center" size="{{isset($blog) ? 5 : 0}}">
-            <option class="p-2 m-2">All</option>
+            <option value="" class="p-2 m-2">All</option>
             @foreach($distinations as $distination)
             <option value="{{$distination->slug}}" class="p-2 m-2">{{$distination->name}}</option>
             @endforeach
