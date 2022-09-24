@@ -19,7 +19,7 @@ class Blog extends Model
         });
 
         $query->when($filter['category'] ?? false,function($query,$slug){
-            $query->whereHas('category', function($query) use($slug){
+            $query->whereHas('categories', function($query) use($slug){
                 $query->where('slug',$slug);
             });
         });
@@ -36,7 +36,7 @@ class Blog extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function category()
+    public function categories()
     {   
         return $this->belongsToMany(Category::class);
     }
@@ -46,4 +46,18 @@ class Blog extends Model
         return $this->belongsTo(Distination::class);
     }
 
+    public function addCategory($category_id)
+    {
+        return $this->categories()->attach($category_id);
+    }
+
+    public function removeCategory($category_id)
+    {
+        return $this->categories()->detach($category_id);
+    }
+
+    public function updateCategories($category_ids)
+    {
+        return $this->categories()->sync($category_ids);
+    }
 }

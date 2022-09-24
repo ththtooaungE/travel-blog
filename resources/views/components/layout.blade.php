@@ -10,7 +10,7 @@
 </head>
 <body style="background-color: #F0EFF5;">
 
-    <x-nav />
+    <x-navbar />
     
     {{$slot}}
 

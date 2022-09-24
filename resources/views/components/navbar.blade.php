@@ -10,14 +10,23 @@
     <div>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav">
+                
                 @auth
                 <li class="nav-item active mx-2 d-flex align-items-center justify-content-center">
                     <a href="/">
-                        <img src="{{auth()->user()->avatar}}" alt="" class=" mx-3 rounded-circle" height="45xp" width="45px">
+                        <img src="{{auth()->user()->avatar}}" alt="" class="mx-3 rounded-circle" height="45xp" width="45px">
                     </a>
                     <a  href="/" class="my-auto text-dark">{{auth()->user()->name}}</a>                    
                 </li>
+                @if(auth()->user()->is_admin)
+                <li class="nav-item active mx-2">
+                    <a href="/admin/blogs" 
+                    class="nav-link btn btn-light text-white" 
+                    style="width:100px;background-color: #1A385A;">Dashboard</a>
+                </li>
+                @endif
                 @endauth 
+
                 <li class="nav-item active mx-2">
                     <a href="/" 
                     class="nav-link btn btn-light text-white" 

@@ -1,9 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\CategoryController;
-use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,3 +26,12 @@ Route::get('/login',[AuthController::class,'login'])->middleware('guest');
 Route::post('/login',[AuthController::class,'login_post'])->middleware('guest');
 
 Route::post('/logout',[AuthController::class,'logout'])->middleware('auth');
+
+Route::get('/admin/blogs',[AdminBlogController::class,'index'])->middleware('mustBeAdmin');
+Route::post('/admin/blogs/create',[AdminBlogController::class,'store'])->middleware('mustBeAdmin');
+Route::get('/admin/blogs/create',[AdminBlogController::class,'create'])->middleware('mustBeAdmin');
+
+Route::get('/admin/blogs/{blog:slug}/edit',[AdminBlogController::class,'edit'])->middleware('mustBeAdmin');
+Route::patch('/admin/blogs/{blog:slug}/update',[AdminBlogController::class,'update'])->middleware('mustBeAdmin');
+
+Route::delete('/admin/blogs/{blog:slug}/delete',[AdminBlogController::class,'destroy'])->middleware('mustBeAdmin');

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->foreignId('user_id');
+            $table->foreignId('distination_id');
+            $table->string('image');
             $table->text('body');
             $table->timestamps();
         });

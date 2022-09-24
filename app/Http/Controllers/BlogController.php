@@ -14,7 +14,7 @@ class BlogController extends Controller
         return view('blogs.index',[
             'blogs'=>Blog::filter(request(['search','category','distination']))
                 ->latest()
-                ->with('category')
+                ->with('categories')
                 ->paginate(6)
                 ->withQueryString()
         ]);

@@ -6,20 +6,13 @@
                 <div class="card-body">
                     <form action="/login" method="POST">
                         @csrf
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" name="email" value="{{old('email')}}" class="form-control" id="email" autofocus>
-                            @error('email')
-                            <p class="text-danger pt-2" style="font-size: 13px;">{{$message}}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
+                        <x-form.input name="email" type="email" />
+                        <x-form.input-wrapper>
                             <label for="password" class="form-label">Password</label>
                             <input type="password" name="password" class="form-control" id="password">
-                            @error('password')
-                            <p class="text-danger pt-2" style="font-size: 13px;">{{$message}}</p>
-                            @enderror
-                        </div>
+                            <x-form.error name="password" />
+                        </x-form.input-wrapper>
+
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-primary">Login</button>
                         </div>
@@ -27,6 +20,6 @@
                 </div>
             </div>
         </div>
-    
+
     </div>
 </x-layout>
