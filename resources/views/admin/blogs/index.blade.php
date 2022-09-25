@@ -1,4 +1,7 @@
 <x-admin.admin-layout>
+    @if(session('success'))
+    <div class="d-flex justify-content-center align-items-center p-2 m-2"><p class="p-0 m-0">{{session()->get('success')}}</p></div>
+    @endif
     <div class="card p-2 m-2" style="min-height:450px;position:relative">
         <table class="table table-hover">
             <thead>

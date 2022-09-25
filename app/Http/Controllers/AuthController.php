@@ -19,9 +19,13 @@ class AuthController extends Controller
             'name'=>['required','max:255'],
             'username'=>['required','min:6',Rule::unique('users','username')],
             'email'=>['required','email',Rule::unique('users','email')],
-            'password'=>['required','min:8']
+            'password'=>['required','min:8'],
+            'avatar'=>['nullable','image'],
         ]);
 
+        if($formData['avatar']) {
+            $formData['avatar']=request('avatar')->store('avators');
+        }
         $user = User::create($formData);
         auth()->login($user);
         return redirect('/')->with(session()->flash('success','Welcome '.$user->name.'!!'));
@@ -43,6 +47,9 @@ class AuthController extends Controller
             ]);
         
         if (auth()->attempt($formData)) {
+            if(auth()->user()->is_admin) {
+                return redirect('/admin/blogs')->with('success','Welcome back, '.auth()->user()->name.'!');
+            }
             return redirect('/')->with('success','Welcome back, '.auth()->user()->name.'!');
         } else {
             return back()->withErrors(['password'=>'Incorrect credentials!']);

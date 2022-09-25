@@ -14,7 +14,7 @@
                 @auth
                 <li class="nav-item active mx-2 d-flex align-items-center justify-content-center">
                     <a href="/">
-                        <img src="{{auth()->user()->avatar}}" alt="" class="mx-3 rounded-circle" height="45xp" width="45px">
+                        <img src="/storage/{{auth()->user()->avatar}}" alt="" class="mx-3 rounded-circle" height="45xp" width="45px">
                     </a>
                     <a  href="/" class="my-auto text-dark">{{auth()->user()->name}}</a>                    
                 </li>
