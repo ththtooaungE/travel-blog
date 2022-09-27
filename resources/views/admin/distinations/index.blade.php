@@ -7,7 +7,7 @@
                     <th scope="col">City or Town</th>
                     <th scope="col">Slug</th>
                     <th scope="col">Creation Date</th>
-                    <th scope="col">Action</th>
+                    <th scope="col" width="20%">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,12 +17,13 @@
                     <td>{{$distination->name}}</td>
                     <td>{{$distination->slug}}</td>
                     <td>{{$distination->created_at->diffForHumans()}}</td>
-                    <td>
+                    <td class="d-flex">
+                        <a href="/admin/distinations/{{$distination->slug}}/edit" class="btn btn-primary m-1">Edit</a>
                         <form action="/admin/distinations/{{$distination->slug}}/destroy" method="POST"
                             onSubmit="return confirm('Do you want to delete this item?');">
                             @csrf
                             @method('delete')
-                            <button class="btn">Delete</button>
+                            <button class="btn btn-danger m-1">Delete</button>
                         </form>
                     </td>
                 </tr>

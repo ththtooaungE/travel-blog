@@ -52,3 +52,6 @@ Route::get('/admin/distinations',[AdminDistinationController::class,'index'])->m
 Route::get('/admin/distinations/create',[AdminDistinationController::class,'create'])->middleware('mustBeAdmin');
 Route::post('/admin/distinations/create',[AdminDistinationController::class,'store'])->middleware('mustBeAdmin');
 Route::delete('/admin/distinations/{distination:slug}/destroy',[AdminDistinationController::class,'destroy'])->middleware('mustBeAdmin');
+Route::get('/admin/distinations/{distination:slug}/edit',[AdminDistinationController::class,'edit'])->middleware('mustBeAdmin');
+Route::patch('/admin/distinations/{distination:slug}/edit',[AdminDistinationController::class,'update'])->middleware('mustBeAdmin');
+

@@ -36,4 +36,22 @@ class AdminDistinationController extends Controller
         $distination->delete();
         return redirect('/admin/distinations');
     }
+
+    public function edit(Distination $distination)
+    {
+        return view('admin.distinations.edit',[
+            'distination'=>$distination
+        ]);
+    }
+
+    public function update(Distination $distination)
+    {
+        $formData = request()->validate([
+            'name'=>['required',Rule::unique('distinations','name')->ignore($distination->id)],
+            'slug'=>['required',Rule::unique('distinations','slug')->ignore($distination->id)]
+        ]);
+
+        $distination->update($formData);
+        return redirect('/admin/distinations');
+    }
 }
