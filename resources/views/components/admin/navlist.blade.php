@@ -17,9 +17,9 @@
         <a class="nav-link text-white p-0 m-0" href="/admin/admins">Admins</a>
     </li>
     <li class="nav-item btn btn-primary p-2 m-1" style="background-color: #598EC2;">
-        <a class="nav-link text-white p-0 m-0" href="#">Categories</a>
+        <a class="nav-link text-white p-0 m-0" href="/admin/categories">Categories</a>
     </li>
     <li class="nav-item btn btn-primary p-2 m-1" style="background-color: #598EC2;">
-        <a class="nav-link text-white p-0 m-0" href="#">Distinations</a>
+        <a class="nav-link text-white p-0 m-0" href="/admin/distinations">Distinations</a>
     </li>
 </ul>

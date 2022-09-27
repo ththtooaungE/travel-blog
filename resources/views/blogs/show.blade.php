@@ -1,7 +1,7 @@
 <x-layout>
     <div class="container">
         <div class="row mb-5">
-            
+
             <!-- single blog -->
             <div class="col-8">
                 <img src="/storage/{{$blog->image}}" width="100%" alt="blog picture">
@@ -9,10 +9,14 @@
                 <p>written by <b>{{$blog->user->name}}</b></p>
                 <p>{{$blog->created_at->diffForHumans()}}</p>
                 <div>
-                @foreach($blog->categories->map(function($category){return $category->name;}) as $category)
-                    <a class="text-white" 
-                        href=""><span class="badge bg-success p-2">{{$category}}</span></a>
-                @endforeach
+                    @foreach($blog->categories->map(function($category){return $category->name;}) as $category)
+                    <a class="text-white" href=""><span class="badge bg-success p-2">{{$category}}</span></a>
+                    @endforeach
+                    <a class="text-white" href="/?distination={{$blog->distination->slug}}{{request('search')
+                        ? '&search='.request('search') : ''}}{{request('category') 
+                        ? '&category='.request('category') : ''}}">
+                        <span class="badge bg-success p-2">{{$blog->distination->name}}</span>
+                    </a>
                 </div>
                 <p>{!!$blog->body!!}</p>
             </div>

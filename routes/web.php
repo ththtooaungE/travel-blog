@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminAdminController;
+use App\Http\Controllers\AdminDistinationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
@@ -30,8 +31,8 @@ Route::post('/logout',[AuthController::class,'logout'])->middleware('auth');
 
 //admin/blogs
 Route::get('/admin/blogs',[AdminBlogController::class,'index'])->middleware('mustBeAdmin');
-Route::post('/admin/blogs/create',[AdminBlogController::class,'store'])->middleware('mustBeAdmin');
 Route::get('/admin/blogs/create',[AdminBlogController::class,'create'])->middleware('mustBeAdmin');
+Route::post('/admin/blogs/create',[AdminBlogController::class,'store'])->middleware('mustBeAdmin');
 Route::get('/admin/blogs/{blog:slug}/edit',[AdminBlogController::class,'edit'])->middleware('mustBeAdmin');
 Route::patch('/admin/blogs/{blog:slug}/update',[AdminBlogController::class,'update'])->middleware('mustBeAdmin');
 Route::delete('/admin/blogs/{blog:slug}/delete',[AdminBlogController::class,'destroy'])->middleware('mustBeAdmin');
@@ -46,4 +47,8 @@ Route::get('/admin/admins',[AdminAdminController::class,'index'])->middleware('m
 Route::get('/admin/admins/add',[AdminAdminController::class,'add'])->middleware('mustBeAdmin');
 Route::patch('/admin/admins/{user:username}/add',[AdminAdminController::class,'add_post'])->middleware('mustBeAdmin');
 
-
+//admin/distinations
+Route::get('/admin/distinations',[AdminDistinationController::class,'index'])->middleware('mustBeAdmin');
+Route::get('/admin/distinations/create',[AdminDistinationController::class,'create'])->middleware('mustBeAdmin');
+Route::post('/admin/distinations/create',[AdminDistinationController::class,'store'])->middleware('mustBeAdmin');
+Route::delete('/admin/distinations/{distination:slug}/destroy',[AdminDistinationController::class,'destroy'])->middleware('mustBeAdmin');
