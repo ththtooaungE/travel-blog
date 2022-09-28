@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminBlogController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminAdminController;
 use App\Http\Controllers\AdminDistinationController;
+use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
@@ -55,3 +56,10 @@ Route::delete('/admin/distinations/{distination:slug}/destroy',[AdminDistination
 Route::get('/admin/distinations/{distination:slug}/edit',[AdminDistinationController::class,'edit'])->middleware('mustBeAdmin');
 Route::patch('/admin/distinations/{distination:slug}/edit',[AdminDistinationController::class,'update'])->middleware('mustBeAdmin');
 
+//admin/categories
+Route::get('/admin/categories',[AdminCategoryController::class,'index'])->middleware('mustBeAdmin');
+Route::get('/admin/categories/create',[AdminCategoryController::class,'create'])->middleware('mustBeAdmin');
+Route::post('/admin/categories/create',[AdminCategoryController::class,'store'])->middleware('mustBeAdmin');
+Route::get('/admin/categories/{category:slug}/edit',[AdminCategoryController::class,'edit'])->middleware('mustBeAdmin');
+Route::patch('/admin/categories/{category:slug}/edit',[AdminCategoryController::class,'update'])->middleware('mustBeAdmin');
+Route::delete('/admin/categories/{category:slug}/destroy',[AdminCategoryController::class,'destroy'])->middleware('mustBeAdmin');
