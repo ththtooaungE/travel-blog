@@ -1,6 +1,6 @@
 <x-admin.admin-layout>
     <div class="card p-2 m-2" style="min-height:450px;position:relative">
-        <table class="table table-hover">
+        <table class="table table-hover mb-5">
             <thead>
                 <tr>
                     <th scope="col" width="10%">#</th>

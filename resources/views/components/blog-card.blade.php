@@ -7,12 +7,13 @@
             ? '&search='.request('search') : ''}}{{request('distination') 
             ? '&distination='.request('distination') : ''}}"><span class="badge bg-success p-2">{{$category->name}}</span></a>
     @endforeach
-
+    @if($blog->distination)
     <a class="text-white" href="/?distination={{$blog->distination->slug}}{{request('search')
             ? '&search='.request('search') : ''}}{{request('category') 
             ? '&category='.request('category') : ''}}">
         <span class="badge bg-success p-2">{{$blog->distination->name}}</span>
     </a>
+    @endif
 
     <!-- image -->
     <a href="/blogs/{{$blog->slug}}">

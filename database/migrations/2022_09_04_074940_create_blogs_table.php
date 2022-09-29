@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->foreignId('user_id');
-            $table->foreignId('distination_id');
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('distination_id')->nullable()->constrained()->nullOnDelete();
             $table->string('image');
             $table->text('body');
             $table->timestamps();

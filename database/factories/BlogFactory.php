@@ -21,7 +21,8 @@ class BlogFactory extends Factory
             'title'=>$this->faker->name(),
             'slug'=>$this->faker->unique()->slug(),
             'user_id'=>User::factory(),
-            'body'=>$this->faker->paragraph()
+            'body'=>$this->faker->paragraph(),
+            'image'=>$this->faker->paragraph()
         ];
     }
 }

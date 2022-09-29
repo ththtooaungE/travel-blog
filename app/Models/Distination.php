@@ -10,7 +10,7 @@ class Distination extends Model
     use HasFactory;
     protected $guarded=['id'];
 
-    public function blog()
+    public function blogs()
     {
         return $this->hasMany(Blog::class);
     }

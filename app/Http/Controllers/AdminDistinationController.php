@@ -33,6 +33,7 @@ class AdminDistinationController extends Controller
 
     public function destroy(Distination $distination)
     {
+        
         $distination->delete();
         return redirect('/admin/distinations');
     }
