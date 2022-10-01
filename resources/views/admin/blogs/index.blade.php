@@ -8,7 +8,7 @@
                 <tr>
                     <th scope="col" width="10%">#</th>
                     <th scope="col">Title</th>
-                    <th scope="col">Intro</th>
+                    <th scope="col">Author</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -17,13 +17,17 @@
                 <tr>
                     <th scope="row">{{$loop->iteration}}</th>
                     <td>{{$blog->title}}</td>
-                    <td>{!!substr($blog->body,0,45)!!}...</td>
+                    <td>{{$blog->user->name}}</td>
                     <td class="d-flex">
-                        <a href="/admin/blogs/{{$blog->slug}}/edit" class="btn btn-success mx-1">Edit</a>
+                        <a href="/admin/blogs/{{$blog->slug}}/edit" 
+                            class="btn btn-success mx-1 {{$blog->user_id === auth()->user()->id ? '' : 'disabled'}}"
+                            >Edit</a>
                         <form action="/admin/blogs/{{$blog->slug}}/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this?')">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" 
+                                class="btn btn-danger {{$blog->user_id === auth()->user()->id ? '' : 'disabled'}}"
+                                >Delete</button>
                         </form>
                     </td>
                 </tr>

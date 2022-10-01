@@ -23,43 +23,51 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[BlogController::class, 'index']);
 Route::get('/blogs/{blog:slug}',[BlogController::class,'show']);
 
+Route::middleware(['guest'])->group(function () {
+    //authenication
+    Route::get('/register',[AuthController::class,'create']);
+    Route::post('/register',[AuthController::class,'store']);
+    Route::get('/login',[AuthController::class,'login']);
+    Route::post('/login',[AuthController::class,'login_post']);
+});
 //authenication
-Route::get('/register',[AuthController::class,'create'])->middleware('guest');
-Route::post('/register',[AuthController::class,'store'])->middleware('guest');
-Route::get('/login',[AuthController::class,'login'])->middleware('guest');
-Route::post('/login',[AuthController::class,'login_post'])->middleware('guest');
 Route::post('/logout',[AuthController::class,'logout'])->middleware('auth');
-
 //admin/blogs
-Route::get('/admin/blogs',[AdminBlogController::class,'index'])->middleware('mustBeAdmin');
-Route::get('/admin/blogs/create',[AdminBlogController::class,'create'])->middleware('mustBeAdmin');
-Route::post('/admin/blogs/create',[AdminBlogController::class,'store'])->middleware('mustBeAdmin');
-Route::get('/admin/blogs/{blog:slug}/edit',[AdminBlogController::class,'edit'])->middleware('mustBeAdmin');
-Route::patch('/admin/blogs/{blog:slug}/update',[AdminBlogController::class,'update'])->middleware('mustBeAdmin');
-Route::delete('/admin/blogs/{blog:slug}/delete',[AdminBlogController::class,'destroy'])->middleware('mustBeAdmin');
+Route::get('/admin/blogs/{blog:slug}/edit',[AdminBlogController::class,'edit'])->middleware(["mustBeAuthor","mustBeAdmin"]);
 
-//admin/users
-Route::get('/admin/users',[AdminUserController::class,'index'])->middleware('mustBeAdmin');
-Route::get('/admin/users/{user:username}/show',[AdminUserController::class,'show'])->middleware('mustBeAdmin');
-Route::delete('/admin/users/{user:username}/delete',[AdminUserController::class,'destroy'])->middleware('mustBeAdmin');
+Route::middleware(['mustBeAdmin'])->group(function() {
+    //admin/blogs
+    Route::get('/admin/blogs',[AdminBlogController::class,'index']);
+    Route::get('/admin/blogs/create',[AdminBlogController::class,'create']);
+    Route::post('/admin/blogs/create',[AdminBlogController::class,'store']);
+    Route::patch('/admin/blogs/{blog:slug}/update',[AdminBlogController::class,'update']);
+    Route::delete('/admin/blogs/{blog:slug}/delete',[AdminBlogController::class,'destroy']);
 
-//admin/admins
-Route::get('/admin/admins',[AdminAdminController::class,'index'])->middleware('mustBeAdmin');
-Route::get('/admin/admins/add',[AdminAdminController::class,'add'])->middleware('mustBeAdmin');
-Route::patch('/admin/admins/{user:username}/add',[AdminAdminController::class,'add_post'])->middleware('mustBeAdmin');
+    //admin/users
+    Route::get('/admin/users',[AdminUserController::class,'index']);
+    Route::get('/admin/users/{user:username}/show',[AdminUserController::class,'show']);
+    Route::delete('/admin/users/{user:username}/delete',[AdminUserController::class,'destroy']);
 
-//admin/distinations
-Route::get('/admin/distinations',[AdminDistinationController::class,'index'])->middleware('mustBeAdmin');
-Route::get('/admin/distinations/create',[AdminDistinationController::class,'create'])->middleware('mustBeAdmin');
-Route::post('/admin/distinations/create',[AdminDistinationController::class,'store'])->middleware('mustBeAdmin');
-Route::delete('/admin/distinations/{distination:slug}/destroy',[AdminDistinationController::class,'destroy'])->middleware('mustBeAdmin');
-Route::get('/admin/distinations/{distination:slug}/edit',[AdminDistinationController::class,'edit'])->middleware('mustBeAdmin');
-Route::patch('/admin/distinations/{distination:slug}/edit',[AdminDistinationController::class,'update'])->middleware('mustBeAdmin');
+    //admin/admins
+    Route::get('/admin/admins',[AdminAdminController::class,'index']);
+    Route::get('/admin/admins/add',[AdminAdminController::class,'add']);
+    Route::patch('/admin/admins/{user:username}/add',[AdminAdminController::class,'add_post']);
 
-//admin/categories
-Route::get('/admin/categories',[AdminCategoryController::class,'index'])->middleware('mustBeAdmin');
-Route::get('/admin/categories/create',[AdminCategoryController::class,'create'])->middleware('mustBeAdmin');
-Route::post('/admin/categories/create',[AdminCategoryController::class,'store'])->middleware('mustBeAdmin');
-Route::get('/admin/categories/{category:slug}/edit',[AdminCategoryController::class,'edit'])->middleware('mustBeAdmin');
-Route::patch('/admin/categories/{category:slug}/edit',[AdminCategoryController::class,'update'])->middleware('mustBeAdmin');
-Route::delete('/admin/categories/{category:slug}/destroy',[AdminCategoryController::class,'destroy'])->middleware('mustBeAdmin');
+    //admin/distinations
+    Route::get('/admin/distinations',[AdminDistinationController::class,'index']);
+    Route::get('/admin/distinations/create',[AdminDistinationController::class,'create']);
+    Route::post('/admin/distinations/create',[AdminDistinationController::class,'store']);
+    Route::delete('/admin/distinations/{distination:slug}/destroy',[AdminDistinationController::class,'destroy']);
+    Route::get('/admin/distinations/{distination:slug}/edit',[AdminDistinationController::class,'edit']);
+    Route::patch('/admin/distinations/{distination:slug}/edit',[AdminDistinationController::class,'update']);
+
+    //admin/categories
+    Route::get('/admin/categories',[AdminCategoryController::class,'index']);
+    Route::get('/admin/categories/create',[AdminCategoryController::class,'create']);
+    Route::post('/admin/categories/create',[AdminCategoryController::class,'store']);
+    Route::get('/admin/categories/{category:slug}/edit',[AdminCategoryController::class,'edit']);
+    Route::patch('/admin/categories/{category:slug}/edit',[AdminCategoryController::class,'update']);
+    Route::delete('/admin/categories/{category:slug}/destroy',[AdminCategoryController::class,'destroy']);
+
+});
+

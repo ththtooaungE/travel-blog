@@ -80,7 +80,6 @@ class AdminBlogController extends Controller
             'distination_id.required'=>'Distination field is required!'
         ]);
 
-        $formData['user_id']=auth()->user()->id;
         $formData['updated_at']=now();//update blog eventhough only 'categories' is updated
         if(request('image')) $formData['image']=request()->file('image')->store('images');
         
