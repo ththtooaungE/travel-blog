@@ -6,7 +6,7 @@
             <div class="col-8">
                 <img src="/storage/{{$blog->image}}" width="100%" alt="blog picture">
                 <h1 class="pt-2 m-2">{{$blog->title}}</h1>
-                <p>written by <b>{{$blog->user->name ?? 'unknown'}}</b></p>
+                <p>written by <b>{{$blog->author->name ?? 'unknown'}}</b></p>
                 <p>{{$blog->created_at->diffForHumans()}}</p>
                 <div>
                     @foreach($blog->categories->map(function($category){return $category->name;}) as $category)
@@ -21,6 +21,10 @@
                     @endif
                 </div>
                 <p>{!!$blog->body!!}</p>
+
+
+                <x-comment-form :blog="$blog" />
+                <x-comments :comments="$blog->comments()->latest()->paginate(4)"></x-comments>
             </div>
 
             <!-- distinations -->

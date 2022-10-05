@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminDistinationController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +33,8 @@ Route::middleware(['guest'])->group(function () {
 });
 //authenication
 Route::post('/logout',[AuthController::class,'logout'])->middleware('auth');
+
+Route::post('/blogs/{blog:slug}/comments',[CommentController::class,'store']);
 //admin/blogs
 Route::get('/admin/blogs/{blog:slug}/edit',[AdminBlogController::class,'edit'])->middleware(["mustBeAuthor","mustBeAdmin"]);
 

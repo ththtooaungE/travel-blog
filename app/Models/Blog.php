@@ -31,9 +31,9 @@ class Blog extends Model
         });
     }
 
-    public function user()
+    public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
     }
 
     public function categories()
@@ -59,5 +59,10 @@ class Blog extends Model
     public function updateCategories($category_ids)
     {
         return $this->categories()->sync($category_ids);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
