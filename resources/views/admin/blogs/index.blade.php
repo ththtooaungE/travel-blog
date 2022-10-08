@@ -17,7 +17,7 @@
                 <tr>
                     <th scope="row">{{$loop->iteration}}</th>
                     <td>{{$blog->title}}</td>
-                    <td>{{$blog->user->name}}</td>
+                    <td>{{$blog->author->name}}</td>
                     <td class="d-flex">
                         <a href="/admin/blogs/{{$blog->slug}}/edit" 
                             class="btn btn-success mx-1 {{$blog->user_id === auth()->user()->id ? '' : 'disabled'}}"

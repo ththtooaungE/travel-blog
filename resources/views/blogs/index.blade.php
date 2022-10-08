@@ -5,7 +5,7 @@
     @endif
     
     <!-- hero section -->
-    <img src="\storage\images\TNd72bMGtTLZqYOrUQ11GGmHWFBGYwODjoVsyfDy.jpg" width="100%" class="mb-5" alt="">
+    <img src="\storage\images\KnaH9BWVvqp8oosXlo28mPdlAoV3HRCQCEZacMEA.jpg" width="100%" class="mb-5" alt="">
 
     <div class="container">
 

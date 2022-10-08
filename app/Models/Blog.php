@@ -36,14 +36,14 @@ class Blog extends Model
         return $this->belongsTo(User::class,'user_id');
     }
 
-    public function categories()
-    {   
-        return $this->belongsToMany(Category::class);
-    }
-
     public function distination()
     {
         return $this->belongsTo(Distination::class);
+    }
+    //categories
+    public function categories()
+    {   
+        return $this->belongsToMany(Category::class);
     }
 
     public function addCategory($category_id)
@@ -60,9 +60,25 @@ class Blog extends Model
     {
         return $this->categories()->sync($category_ids);
     }
-
+    //comments
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    //suscribe
+    public function subscribers()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function subscribe()
+    {
+        return $this->subscribers()->attach(auth()->id());
+    }
+
+    public function unSubscribe()
+    {
+        return $this->subscribers()->detach(auth()->id());
     }
 }
