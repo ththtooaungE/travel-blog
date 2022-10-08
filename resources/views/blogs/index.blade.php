@@ -8,13 +8,10 @@
     <img src="\storage\images\KnaH9BWVvqp8oosXlo28mPdlAoV3HRCQCEZacMEA.jpg" width="100%" class="mb-5" alt="">
 
     <div class="container">
-
         <x-distination-dropdown-wrapper>
             <x-distination-dropdown />
         </x-distination-dropdown-wrapper>
-        
-        <x-blog-section :blogs="$blogs" />
-        <x-subscribe />
-    </div>
 
+        <x-blog-section :blogs="$blogs" />
+    </div>
 </x-layout>

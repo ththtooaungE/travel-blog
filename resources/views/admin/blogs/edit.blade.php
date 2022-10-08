@@ -19,11 +19,13 @@
                 <select name="categories[]" id="category" class="form-select text-center mb-2" size="3" multiple>
                     @foreach($categories as $category)
                     <option 
+                        <!-- selected for form old values -->
                         @if(old('categories') !== null)
                             @foreach(old('categories') as $oldCategory)
                                 {{$category->id == $oldCategory ? 'selected' : ''}}
                             @endforeach
                         @endif
+                        <!-- selected for category values of the blog -->
                         @if($blog->categories !== null && old('categories') == null)
                             @foreach($blog->categories as $oldCategory)
                                 {{$category->id == $oldCategory->id ? 'selected' : ''}}
