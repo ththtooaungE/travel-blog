@@ -29,6 +29,10 @@ class SubscriberMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.subscriber_mail');
+        return $this->view('mail.subscriber_mail')
+            ->attach(public_path("/storage/".$this->blog->image),[
+                'as'=>'blog_image.jpg',
+                'mime'=>'application/jpg'
+            ]);
     }
 }
