@@ -5,7 +5,6 @@
             @csrf
             @method('patch')
             <x-form.input name="name" :default="$category->name" />
-            <x-form.input name="slug" :default="$category->slug" />
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>

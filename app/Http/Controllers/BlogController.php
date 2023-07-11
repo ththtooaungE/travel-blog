@@ -13,7 +13,7 @@ class BlogController extends Controller
     {
         return view('blogs.index',[
             'blogs'=>Blog::filter(request(['search','category','distination']))
-                ->latest()
+                ->latest('id')
                 ->with('categories')
                 ->paginate(6)
                 ->withQueryString()
@@ -23,7 +23,7 @@ class BlogController extends Controller
     public function show(Blog $blog)
     {
         return view('blogs.show',[
-            'blog'=>Blog::where('slug',$blog->slug)->first(),
+            'blog'=>$blog,
             'randomBlogs'=>Blog::inRandomOrder()->whereNot('slug',$blog->slug)->take(3)->get()
         ]);
     }

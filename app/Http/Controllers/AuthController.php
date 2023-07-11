@@ -23,7 +23,7 @@ class AuthController extends Controller
             'avatar'=>['nullable','image'],
         ]);
 
-        if($formData['avatar']) {
+        if(isset($formData['avatar'])) {
             $formData['avatar']=request('avatar')->store('avators');
         }
         $user = User::create($formData);

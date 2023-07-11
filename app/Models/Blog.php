@@ -46,19 +46,19 @@ class Blog extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function addCategory($category_id)
+    public function addCategories($categories)
     {
-        return $this->categories()->attach($category_id);
+        return $this->categories()->attach($categories);
     }
 
-    public function removeCategory($category_id)
+    public function removeCategories()
     {
-        return $this->categories()->detach($category_id);
+        return $this->categories()->detach();
     }
 
-    public function updateCategories($category_ids)
+    public function updateCategories($categories)
     {
-        return $this->categories()->sync($category_ids);
+        return $this->categories()->sync($categories);
     }
     //comments
     public function comments()

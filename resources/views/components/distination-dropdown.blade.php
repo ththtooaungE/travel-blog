@@ -1,4 +1,4 @@
-@props(['categories','currentCategory','blog'])
+@props(['distinations','currentDistination'])
     <form {{$attributes->merge(['action'=>'/','method'=>'get','class'=>'d-flex justify-content-center align-items-center'])}}>
         <!-- search filter -->
         @if (request('search'))

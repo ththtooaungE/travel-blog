@@ -4,7 +4,6 @@
         <form action="/admin/categories/create" method="POST" class="p-2 m-2">
             @csrf
             <x-form.input name="name" />
-            <x-form.input name="slug" />
             <button type="submit" class="btn btn-primary">Create</button>
         </form>
     </div>

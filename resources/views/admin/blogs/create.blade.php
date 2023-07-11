@@ -6,8 +6,6 @@
             @csrf
 
             <x-form.input name="title" />
-            <x-form.input name="slug" />
-
             <x-form.textarea name="body" />
             <x-form.input-wrapper>
                 <x-form.label name="category" />

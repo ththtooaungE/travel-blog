@@ -27,14 +27,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/blogs/{blog:slug}/comments', [CommentController::class, 'store']);
 });
 
-//admin/blogs
-Route::get('/admin/blogs/{blog:slug}/edit', [AdminBlogController::class, 'edit'])->middleware(["mustBeAuthor", "mustBeAdmin"]);
-
+//admin dashboard
 Route::middleware(['mustBeAdmin'])->group(function () {
     //admin/blogs
     Route::get('/admin/blogs', [AdminBlogController::class, 'index']);
     Route::get('/admin/blogs/create', [AdminBlogController::class, 'create']);
     Route::post('/admin/blogs/create', [AdminBlogController::class, 'store']);
+    Route::get('/admin/blogs/{blog:slug}/edit', [AdminBlogController::class, 'edit']);
     Route::patch('/admin/blogs/{blog:slug}/update', [AdminBlogController::class, 'update']);
     Route::delete('/admin/blogs/{blog:slug}/delete', [AdminBlogController::class, 'destroy']);
 

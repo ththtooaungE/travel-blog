@@ -11,7 +11,6 @@
             @csrf
             @method('patch')
             <x-form.input name="title" :default="$blog->title" />
-            <x-form.input name="slug" :default="$blog->slug" />
             <x-form.textarea name="body" :default="$blog->body" />
 
             <x-form.input-wrapper>
@@ -19,13 +18,13 @@
                 <select name="categories[]" id="category" class="form-select text-center mb-2" size="3" multiple>
                     @foreach($categories as $category)
                     <option 
-                        <!-- selected for form old values -->
+                        {{-- selected for form old values --}}
                         @if(old('categories') !== null)
                             @foreach(old('categories') as $oldCategory)
                                 {{$category->id == $oldCategory ? 'selected' : ''}}
                             @endforeach
                         @endif
-                        <!-- selected for category values of the blog -->
+                        {{-- selected for category values of the blog --}}  
                         @if($blog->categories !== null && old('categories') == null)
                             @foreach($blog->categories as $oldCategory)
                                 {{$category->id == $oldCategory->id ? 'selected' : ''}}

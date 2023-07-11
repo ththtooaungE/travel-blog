@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 class AdminCategoryController extends Controller
 {
     public function index()
     {
         return view('admin.categories.index',[
-            'categories'=>Category::latest()->get()
+            'categories'=>Category::latest('id')->get()
         ]);
     }
 
@@ -23,9 +24,9 @@ class AdminCategoryController extends Controller
     public function store()
     {
         $formData = request()->validate([
-            'name'=>['required',Rule::unique('categories','name')],
-            'slug'=>['required',Rule::unique('categories','slug')]
+            'name'=>['required',Rule::unique('categories','name')]
         ]);
+        $formData['slug'] = Str::slug($formData['name']);
 
         Category::create($formData);
         return redirect('/admin/categories');
@@ -41,9 +42,9 @@ class AdminCategoryController extends Controller
     public function update(Category $category)
     {
         $formData = request()->validate([
-            'name'=>['required',Rule::unique('categories','name')->ignore($category->id)],
-            'slug'=>['required',Rule::unique('categories','slug')->ignore($category->id)]
+            'name'=>['required',Rule::unique('categories','name')->ignore($category->id)]
         ]);
+        $formData['slug'] = Str::slug($formData['name']);
 
         $category->update($formData);
         return redirect('/admin/categories');

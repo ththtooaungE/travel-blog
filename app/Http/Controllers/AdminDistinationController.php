@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Distination;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 class AdminDistinationController extends Controller
 {
     public function index()
     {
         return view('admin.distinations.index',[
-            'distinations'=>Distination::latest()->get()
+            'distinations'=>Distination::latest('id')->get()
         ]);
     }
 
@@ -23,9 +24,9 @@ class AdminDistinationController extends Controller
     public function store()
     {
         $formData = request()->validate([
-            'name'=>['required',Rule::unique('distinations','name')],
-            'slug'=>['required',Rule::unique('distinations','slug')]
+            'name'=>['required',Rule::unique('distinations','name')]
         ]);
+        $formData['slug'] = Str::slug($formData['name']);
 
         Distination::create($formData);
         return redirect('/admin/distinations');
@@ -48,9 +49,9 @@ class AdminDistinationController extends Controller
     public function update(Distination $distination)
     {
         $formData = request()->validate([
-            'name'=>['required',Rule::unique('distinations','name')->ignore($distination->id)],
-            'slug'=>['required',Rule::unique('distinations','slug')->ignore($distination->id)]
+            'name'=>['required',Rule::unique('distinations','name')->ignore($distination->id)]
         ]);
+        $formData['slug'] = Str::slug($formData['name']);
 
         $distination->update($formData);
         return redirect('/admin/distinations');
