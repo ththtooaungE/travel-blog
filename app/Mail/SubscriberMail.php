@@ -33,6 +33,6 @@ class SubscriberMail extends Mailable
             ->attach(public_path("/storage/".$this->blog->image),[
                 'as'=>'blog_image.jpg',
                 'mime'=>'application/jpg'
-            ]);
+            ]); //I didn't pass the $blog because once the data is set to public property, it is accessable automatically in the views
     }
 }
